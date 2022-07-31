@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Groupomania</title>
+</head>
+<body>
+    <div class="card">
+        <div class="buttom-box">
+            <div id="btn"></div>
+            <button type="button" class="buttom-btn" onclick="login()">Se Connecte</button>
+            <button type="button" class="buttom-btn" onclick="registre()">S'inscrire</button>
+        </div>
+        <form  id="login" class="input-group">
+            <input type="text" class="input" placeholder="Votre email">
+            <input type="text" class="input" placeholder="Votre password">
+            <button  type="submit" class="submit-btn">Se Connecter</button>
+        </form>
+        <form  id="registre"class="input-group">
+            <input type="text" class="input" placeholder="Firstname">
+            <input type="text" class="input" placeholder="Lastname">
+            <input type="text" class="input" placeholder="Email">
+            <input type="text" class="input" placeholder="Votre password">
+            <button  type="submit" class="submit-btn">Registre</button>
+        </form>
+    </div>
+    <script>
+        var x = document.getElementById('login')
+        var y = document.getElementById('registre')
+        var z = document.getElementById('btn')
+        function registre(){
+            x.style.left= "-400px";
+            y.style.left="50px";
+            z.style.left="130px"
+        }
+        function login(){
+            x.style.left= "60px";
+            y.style.left="450px";
+            z.style.left="10px"
+        }
+    </script>
+</body>
+</html>
