@@ -38,7 +38,7 @@ body{
 }
 #btn{
     top: 0;
-    left: 0;
+    left: 135px;
     position: absolute;
     width: 50%;
     height: 100%;
@@ -46,7 +46,7 @@ body{
     border-radius: 30px;
     transition: .5s;
 }
-.input-group{
+#login,#registre{
     top: 180px; ;
     position:absolute ;
     width: 70%;

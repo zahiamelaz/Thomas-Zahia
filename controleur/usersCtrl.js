@@ -101,20 +101,19 @@ module.exports = {
             },
             (userFound, done) => {
                 if(userFound) {
-                  userFound.update({
-                      lastName: (lastName ? lastName : userFound.lastName),
-                      firstName: (firstName ? firstName : userFound.firstName),
-                      email: (email ? email : userFound.email),
-                      password: (password ? password : userFound.password)
-                  })
+                    userFound.update({
+                        lastName: (lastName ? lastName : userFound.lastName),
+                        firstName: (firstName ? firstName : userFound.firstName),
+                        email: (email ? email : userFound.email),
+                        password: (password ? password : userFound.password)
+                    })
 
-                  .then((userFound) => {
-                      done(userFound);
-                  })
-                  .catch((err) => {
-console.log(err)
-                      response.status(400).json({ 'error': 'An error occurred' });
-                  });
+                    .then((userFound) => {
+                        done(userFound);
+                    })
+                    .catch((err) => {
+                        response.status(400).json({ 'error': 'An error occurred' });
+                    });
                 }
                 else {
                   response.status(404).json({ 'error': 'An error occurred' });
@@ -136,7 +135,7 @@ console.log(err)
         models.Users.findOne({
             attributes: [ 'id', 'email', 'firstName', 'lastName'],
             where: { id: id }
-            })
+        })
         .then(data => {
             if (data) {
                 response.status(200).send(data);
@@ -178,11 +177,11 @@ console.log(err)
         .then(num => {
             if (num == 1) {
             response.status(200).send({
-                message: "User successfully deleted"
+                    message: "User successfully deleted"
                 });
             } else {
                 response.status(400).send({
-                message: `An error occurred : cannot delete user with id=${id}.`
+                    message: `An error occurred : cannot delete user with id=${id}.`
                 });
             }
         })

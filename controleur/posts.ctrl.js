@@ -54,7 +54,6 @@ console.log(err, idUsers)
                     done(null, postFound);
                 })
                 .catch((err) => {
-console.log(err)
                     return response.status(400).json({ 'error': 'Unable to verify Post' });
                 });
             },
@@ -69,7 +68,6 @@ console.log(err)
                       done(postFound);
                   })
                   .catch((err) => {
-console.log(err)
                       response.status(400).json({ 'error': 'An error occurred' });
                   });
                 }
@@ -87,4 +85,68 @@ console.log(err)
             }
         )           
     },
+    searchOne: (request, response) => {
+        // Parameters
+        const id = request.params.id;   
+        models.Posts.findOne({
+            attributes: [ 'id', 'content', 'attachments'],
+            where: { id: id }
+        })
+        .then(data => {
+            if (data) {
+                response.status(200).send(data);
+            } else {
+            response.status(400).send({
+                message: `An error occurred : cannot found posts with id=${id}. Maybe posts was not found!`
+              });
+            }
+        })
+        .catch(err => {
+            response.status(400).send({
+                message: `An error occurred : could not found posts with id=${id}.`
+            });
+        });
+    },
+    searchAll: (request, response) => {
+        // Parameters
+        models.Posts.findAll({
+            attributes: [ 'id', 'content', 'attachments']
+            })
+        .then(data => {
+            if (data) {
+                response.status(200).send(data);
+            }
+        })
+        .catch(err => {
+            response.status(400).send({
+                message: "An error occurred : while retrieving posts."
+            });
+        });
+      },
+    // Have to verify identity with ? Token ?
+
+    delete: (request, response) => {
+        // Parameters
+    const id = request.params.id;
+    
+    models.Posts.destroy({
+        where: { id: id }
+    })
+        .then(num => {
+            if (num == 1) {
+            response.status(200).send({
+                message: "posts successfully deleted"
+                });
+            } else {
+                response.status(400).send({
+                message: `An error occurred : cannot delete posts with id=${id}.`
+                });
+            }
+        })
+        .catch(err => {
+            response.status(404).send({
+                message: "Posts with id=" + id + " was not found"
+            });
+        });
+    }
 }
